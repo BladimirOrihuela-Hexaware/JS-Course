@@ -2,6 +2,7 @@ import { Step } from "../../../models/Step.js";
 import { TestCase } from "../../../models/TestCase.js";
 import { SEARCH_BAR } from "../elements.js";
 import { Key, until } from "selenium-webdriver";
+import { takeScreenshot } from "../../../services/shared/utilities.js";
 
 const Search_Hexaware = new TestCase("Search Hexaware in google");
 
@@ -29,6 +30,8 @@ const performSearch = async (driver) => {
 const validateTitle = async (driver) => {
   const step = new Step("Validate title");
   await driver.wait(until.titleContains("Hexaware"), 5000);
+  const imageName = "google/validate_title.png";
+  await takeScreenshot(driver, imageName);
   return step;
 };
 
