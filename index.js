@@ -6,6 +6,7 @@ const EdgetestCase = Search_Hexaware.copyTC().setBrowser("edge"); //But executed
 
 const google_set = new TestSet([]);
 google_set.testCases = [chrometestCase, EdgetestCase];
+
 // google_set.parallel = false;
 
 google_set.executeTests();

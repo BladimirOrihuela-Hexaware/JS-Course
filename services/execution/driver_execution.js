@@ -4,13 +4,20 @@ import { generateReport, logStart, logStep } from "../report/log.js";
 let testIDs = [];
 let executedIDs = [];
 
-export const executeTestsEngine = (isParallel, receivedTests) => {
+export const executeTestsEngine = async (isParallel, receivedTests) => {
   const tests = [].concat(receivedTests);
   testIDs = tests.map((test, index) => index);
 
-  tests.forEach((test, index) => {
-    executeTest(test, index);
-  });
+  if (isParallel) {
+    tests.forEach((test, index) => {
+      executeTest(test, index);
+    });
+  } else {
+    for (let i = 0; i < tests.length; i++) {
+      const test = tests[i];
+      await executeTest(test, i);
+    }
+  }
 };
 
 const executeTest = async (test, index) => {
