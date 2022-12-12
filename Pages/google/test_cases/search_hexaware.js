@@ -1,0 +1,36 @@
+import { Step } from "../../../models/Step.js";
+import { TestCase } from "../../../models/TestCase.js";
+import { SEARCH_BAR } from "../elements.js";
+import { Key, until } from "selenium-webdriver";
+
+const Search_Hexaware = new TestCase("Search Hexaware in google");
+
+// navigate to google
+const navigateToGoogle = async (driver) => {
+  const step = new Step("navigate to google");
+
+  try {
+    await driver.get("https://google.com");
+  } catch (error) {
+    step.error = error;
+  }
+  return step;
+};
+
+// type hexaware in the search box & search
+const performSearch = async (driver) => {
+  const step = new Step("type hexaware and search");
+  const searchBar = await driver.findElement(SEARCH_BAR);
+  await searchBar.sendKeys("Hexaware", Key.ENTER);
+  return step;
+};
+
+// validate if hexaware word exist in title page
+const validateTitle = async (driver) => {
+  const step = new Step("Validate title");
+  await driver.wait(until.titleContains("Hexaware"), 5000);
+  return step;
+};
+
+Search_Hexaware.steps = [navigateToGoogle, performSearch, validateTitle];
+export default Search_Hexaware;
