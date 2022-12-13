@@ -1,0 +1,20 @@
+{
+  "Search_Hexaware_in_google_chrome": {
+    "step_1": { "description": "navigate to google", "status": "Passed" },
+    "step_2": { "description": "type hexaware and search", "status": "Passed" },
+    "step_3": {
+      "description": "Validate title",
+      "status": "Passed",
+      "screenshot": "google/validate_title.png"
+    }
+  },
+  "Search_Hexaware_in_google_MicrosoftEdge": {
+    "step_1": { "description": "navigate to google", "status": "Passed" },
+    "step_2": { "description": "type hexaware and search", "status": "Passed" },
+    "step_3": {
+      "description": "Validate title",
+      "status": "Passed",
+      "screenshot": "google/validate_title.png"
+    }
+  }
+}

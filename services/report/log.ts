@@ -1,7 +1,19 @@
+import { Step } from "./../../models/Step";
+import { Status } from "./../../models/Status";
 import * as fs from "fs";
 import path from "path";
 
-const report = {};
+interface Report {
+  [testName: string]: {
+    [stepNumber: string]: {
+      description: string;
+      status: Status;
+      screenshot?: string;
+    };
+  };
+}
+
+const report: Report = {};
 
 /**
  * creates a formated name appending the browser name at the end
@@ -9,13 +21,13 @@ const report = {};
  * @param {string} browser
  * @returns the formated name
  */
-export const logStart = (name, browser) => {
+export const logStart = (name: string, browser: string) => {
   const formatedName = name.trim().replace(/ /g, "_") + `_${browser}`;
   report[formatedName] = {};
   return formatedName;
 };
 
-export const logStep = (result, stepNumber, tcName) => {
+export const logStep = (result: Step, stepNumber: number, tcName: string) => {
   const { description, status, screenshot } = result;
   const formatedStepName = `step_${stepNumber}`;
   report[tcName][formatedStepName] = {

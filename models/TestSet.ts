@@ -1,16 +1,20 @@
+import { TestCase } from "./TestCase";
 import { executeTestsEngine } from "../services/execution/driver_execution.js";
 
 export class TestSet {
-  constructor(receivedTests) {
+  testCases: TestCase[];
+  parallel: boolean;
+
+  constructor(receivedTests: TestCase[]) {
     this.testCases = this.initializeTests(receivedTests);
     this.parallel = true;
   }
 
-  initializeTests(receivedTests) {
+  initializeTests(receivedTests: TestCase[]) {
     if (receivedTests == undefined) {
-      this.testCases = [];
+      return [];
     } else {
-      this.testCases = receivedTests;
+      return receivedTests;
     }
   }
 

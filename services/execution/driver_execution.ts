@@ -1,11 +1,14 @@
+import { TestCase } from "./../../models/TestCase";
 import { Builder } from "selenium-webdriver";
 import { generateReport, logStart, logStep } from "../report/log.js";
 
 let testIDs = [];
 let executedIDs = [];
 
-export const executeTestsEngine = async (isParallel, receivedTests) => {
-  const tests = [].concat(receivedTests);
+export const executeTestsEngine = async (
+  isParallel: boolean,
+  tests: TestCase[]
+) => {
   testIDs = tests.map((test, index) => index);
 
   if (isParallel) {
@@ -20,7 +23,7 @@ export const executeTestsEngine = async (isParallel, receivedTests) => {
   }
 };
 
-const executeTest = async (test, index) => {
+const executeTest = async (test: TestCase, index: number) => {
   const { name, browser, steps } = test;
   let { driver } = test;
 

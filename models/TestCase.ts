@@ -1,6 +1,8 @@
-import { Browser } from "selenium-webdriver";
+import { Step } from "./Step";
+import { Status } from "./Status";
+import { Browser, ThenableWebDriver } from "selenium-webdriver";
 
-const getBrowser = (browser) => {
+const getBrowser = (browser = "chrome") => {
   switch (browser) {
     case "chrome":
       return Browser.CHROME;
@@ -12,8 +14,14 @@ const getBrowser = (browser) => {
 };
 
 export class TestCase {
-  constructor(name, browser) {
-    this.status = "unexecuted";
+  status: Status;
+  name: string;
+  browser: string;
+  driver: ThenableWebDriver | null;
+  steps: ((d: ThenableWebDriver) => Promise<Step>)[];
+
+  constructor(name: string, browser?: string) {
+    this.status = "Unexecuted";
     this.steps = [];
     this.name = name;
     this.browser = getBrowser(browser);
@@ -26,7 +34,7 @@ export class TestCase {
     return copy;
   }
 
-  setBrowser(browser) {
+  setBrowser(browser: string) {
     this.browser = getBrowser(browser);
     return this;
   }

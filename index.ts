@@ -1,5 +1,5 @@
-import { TestSet } from "./models/TestSet.js";
-import Search_Hexaware from "./Pages/google/test_cases/search_hexaware.js";
+import { TestSet } from "./models/TestSet";
+import Search_Hexaware from "./Pages/google/test_cases/search_hexaware";
 
 const chrometestCase = Search_Hexaware.copyTC().setBrowser("nintendo"); //But executed in chrome
 const EdgetestCase = Search_Hexaware.copyTC().setBrowser("edge"); //But executed in edge
