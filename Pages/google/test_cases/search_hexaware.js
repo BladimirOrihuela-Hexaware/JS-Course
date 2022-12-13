@@ -32,6 +32,7 @@ const validateTitle = async (driver) => {
   await driver.wait(until.titleContains("Hexaware"), 5000);
   const imageName = "google/validate_title.png";
   await takeScreenshot(driver, imageName);
+  step.screenshot = imageName;
   return step;
 };
 
