@@ -1,12 +1,9 @@
 import { TestSet } from "./models/TestSet";
-import Search_Hexaware from "./Pages/google/test_cases/search_hexaware";
+import ValidateBadCredentials from "./Pages/saucedemo/test_cases/Validate_bad_username";
+import ValidateEmptyCartAfterPurchase from "./Pages/saucedemo/test_cases/Validate_Empty_cart_after_purchase";
 
-const chrometestCase = Search_Hexaware.copyTC().setBrowser("nintendo"); //But executed in chrome
-const EdgetestCase = Search_Hexaware.copyTC().setBrowser("edge"); //But executed in edge
-
-const google_set = new TestSet([]);
-google_set.testCases = [chrometestCase, EdgetestCase];
-
-// google_set.parallel = false;
-
-google_set.executeTests();
+const tc1 = ValidateBadCredentials.copyTC().setBrowser("edge");
+const tc2 = ValidateEmptyCartAfterPurchase.copyTC().setBrowser("chrome");
+const saucedemoTestSet = new TestSet();
+saucedemoTestSet.testCases = [tc2];
+saucedemoTestSet.executeTests();

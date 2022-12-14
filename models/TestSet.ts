@@ -5,12 +5,12 @@ export class TestSet {
   testCases: TestCase[];
   parallel: boolean;
 
-  constructor(receivedTests: TestCase[]) {
+  constructor(receivedTests?: TestCase[]) {
     this.testCases = this.initializeTests(receivedTests);
     this.parallel = true;
   }
 
-  initializeTests(receivedTests: TestCase[]) {
+  initializeTests(receivedTests?: TestCase[]) {
     if (receivedTests == undefined) {
       return [];
     } else {
